@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>animate</title>
+		<script src="./lib/jquery-3.4.1.min.js"></script>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			div{
+				width: 200px;
+				height: 100px;
+			}
+			#d1{
+				background-color: #D2691E;
+				position: absolute;
+			}
+			#d2{
+				background-color: antiquewhite;
+				margin-left: 200px;
+				display: none;
+			}
+			#d3{
+				position: absolute;
+				background-color: brown;
+				margin-left: 400px;
+				top: 0;
+			}
+			#toggle{
+				margin-left: 200px;
+				width: 20px;
+				cursor: pointer;
+				display: block;
+			}
+			#toggle:hover{
+				background-color: #DEB887;
+			}
+			button{
+				margin-left: 400px;
+				position: relative;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="d1"></div>
+		<span id="toggle">></span>
+		<div id="d2">
+			<p>1</p>
+			<p>1</p>
+			<p>1</p>
+		</div>
+		<div id="d3"></div>
+		<button id="clear">clear动画</button>
+		<button id="finish">finish动画</button>
+		<button id="stop">stop动画</button>
+	<script>
+		$(function(){
+			$("#d1").mouseenter(function(){
+				$(this).stop();
+				$(this).animate({
+					height:"200",top:"20"
+				},1000,"linear",function(){
+					console.log("hover");
+				});
+			});
+			$("#d1").mouseleave(function(){
+				$(this).stop();
+				$(this).animate({
+					height:"100",top:"0"
+				},1000,"swing",function(){
+					console.log("out");
+				});
+			});
+			//使用方法作为样式值
+			$("#toggle").mouseenter(function(){
+				$("#d2").animate({
+					width:"show"	
+				},500,"swing");
+			});
+			$("#toggle").mouseleave(function(){
+				$("#d2").animate({
+					width:"hide"	
+				},500,"linear");
+			});
+			//clearQueue和delay
+			$("#d3").click(function(){
+				$(this).animate({
+					height:200,top:100
+				},1000,"linear").delay(200);//延迟200ms再执行下一个动画
+				$(this).animate({
+					height:100,top:10
+				},2000,"linear");
+			})
+			$("#clear").click(function(){
+				$("#d3").clearQueue();	//清除未执行的动画
+			});
+			$("#finish").click(function(){
+				$("#d3").finish();	//立即变成动画结束的状态
+			});
+			$("#stop").click(function(){
+				$("#d3").stop();	//停止当前动画，执行下一个动画
+			});
+		})
+	</script>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>淡入淡出</title>
+		<script src="./lib/jquery-3.4.1.min.js"></script>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				display: none;
+			}
+			#d1{
+				background-color: #D2691E;
+			}
+			#d2{
+				background-color: #DEB887;
+			}
+			#d3{
+				background-color: aquamarine;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="d1"></div>
+		<div id="d2"></div>
+		<div id="d3"></div>
+		<button type="button" id="fadein">fade in</button>
+		<button type="button" id="fadeout">fade out</button>
+		<button type="button" id="fadetoggle">fade toggle</button>
+		<button type="button" id="fadeto">fade to</button>
+		<script>
+			$(function(){
+				$("#fadein").on("click",function(){
+					$("#d1").fadeIn(2000);
+					$("#d2").fadeIn(2000);
+					$("#d3").fadeIn(2000);
+				});
+				$("#fadeout").on("click",function(){
+					$("#d1").fadeOut(2000);
+					$("#d2").fadeOut(2000);
+					$("#d3").fadeOut(2000);
+				});
+				$("#fadetoggle").on("click",function(){
+					$("#d1").fadeToggle(2000);
+					$("#d2").fadeToggle(2000);
+					$("#d3").fadeToggle(2000);
+				});
+				$("#fadeto").on("click",function(){
+					$("#d1").fadeTo(2000,0.3);
+					$("#d2").fadeTo(2000,0.2);
+					$("#d3").fadeTo(2000,0.1);
+				});
+			})
+		</script>
+	</body>
+</html>

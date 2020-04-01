@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>导航栏样式练习</title>
+		<style type="text/css">
+			body,div,a{
+				padding:0;
+				margin: 0;
+			}
+			#main-menu,#sub-menu{
+				float: left;
+			}
+			#main-menu{
+				background-color: darkslateblue;
+			}
+			#sub-menu{
+				background-color: darkgray;
+				display: none;
+			}
+			a{
+				display: block;
+				width: 100px;
+				height: 30px;
+				line-height: 30px;
+				text-decoration: none;
+				color:#fff;
+			}
+			.weightFont{
+				font-weight: bold;
+			}
+			.sub-hover{
+				background-color: rgba(50,50,180,0.3)
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="main-menu">
+			<a href="#" class="item">中央空调</a>
+			<a href="#" class="item">洗衣机</a>
+			<a href="#" class="item">冰箱</a>
+			<a href="#" class="item">电视</a>
+			<a href="#" class="item">冷柜</a>
+		</div>
+		<div id="sub-menu">
+			<a href="#" class="item">AAA</a>
+			<a href="#" class="item">BBB</a>
+			<a href="#" class="item">CCC</a>
+			<a href="#" class="item">DDD</a>
+			<a href="#" class="item">EEE</a>
+		</div>
+		<script src="./lib/jquery-3.4.1.min.js"></script>
+		<script>
+			$(function(){
+				$("#main-menu").hover(function(){//进入主菜单
+					$("#sub-menu").animate({width:"show"},100);//水平展开
+				},function(){
+					$("#sub-menu").hover(function(){
+						$("#sub-menu").stop().show();//取消当前动画，直接show
+					},hideSub);
+					hideSub();//水平收起
+				});
+				function hideSub(){
+					$("#sub-menu").animate({
+						width:"hide"
+					},100);
+				}
+				//左绑定右
+				$("#main-menu a").hover(function(){
+					addStyle($(this).index());
+				},function(){
+					removeStyle($(this).index());
+				});
+			  //	右绑定左
+				$("#sub-menu a").hover(function(){
+					addStyle($(this).index());
+				},function(){
+					removeStyle($(this).index());
+				});
+				
+				function addStyle(ind){
+					$("#main-menu a").eq(ind).addClass("weightFont");
+					$("#sub-menu a").eq(ind).addClass("sub-hover");
+				}
+				function removeStyle(ind){
+					$("#main-menu a").eq(ind).removeClass("weightFont")
+					$("#sub-menu a").eq(ind).removeClass("sub-hover");
+				}
+			});
+			
+		</script>
+	</body>
+</html>

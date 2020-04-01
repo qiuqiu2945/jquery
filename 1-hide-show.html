@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>隐藏与显示之二级菜单</title>
+		<script src="./lib/jquery-3.4.1.min.js"></script>
+		<style type="text/css">
+			#d1,#d2,#d3{
+				width: 100px;
+				height: 100px;
+			}
+			#d1{
+				background-color: #7FFFD4;
+			}
+			#d2{
+				background-color: #D2691E;
+			}
+			#d3{
+				background-color: burlywood;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div id="d1"></div>
+		<div id="d2"></div>
+		<div id="d3"></div>
+		<button id="hide">hide</button>
+		<button id="show">show</button>
+		<button id="toggle">toggle</button>
+		<script>
+			$(function(){
+				$("#hide").click(function(){
+					$("#d1").hide(100);
+					$("#d2").hide(100);
+					$("#d3").hide(100);
+				});
+				$("#show").click(function(){
+					$("#d1").show(100);
+					$("#d2").show(100);
+					$("#d3").show(100);
+				});
+				$("#toggle").click(function(){
+					$("#d1").toggle(100);
+					$("#d2").toggle(100);
+					$("#d3").toggle(100);
+				});
+			})
+		</script>
+	</body>
+</html>

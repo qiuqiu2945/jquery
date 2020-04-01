@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>滑动之二级菜单</title>
+		<script src="./lib/jquery-3.4.1.min.js"></script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#menu{
+				width: 12.5rem;
+				border-right: 1px solid #D2691E;
+				border-bottom: 1px solid #D2691E;
+			}
+			#menu span{
+					display: block;
+					height: 28px;
+					line-height: 28px;
+					background-color: chocolate;
+					text-align: center;
+			}
+			span:hover{
+				cursor: pointer;
+			}
+			#menu p{
+				display: block;
+				height: 28px;
+				line-height: 28px;
+				border: 1px solid gainsboro;
+				border-collapse: collapse;
+				text-align: center;
+			}
+			#menu p:hover{
+				cursor: pointer;
+				background-color: #DEB887;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="menu"></div>
+		<script>
+			$(function(){
+				for(var i = 0; i < 5; i++){
+					$("#menu").append("<div class=\'supermenu"+i+"\'></div>");
+					$(".supermenu"+i).append($("<span></span>").text("menu "+i));
+					var div = "<div class=\'subMenu"+i+"\'></div>";
+					$(".supermenu"+i).append(div);
+					for(var j = 0; j < 4; j++){
+						$(".subMenu"+i).append($("<p></p>").text("sub " + j));
+					}
+				}
+				$("span").click(function(){
+					$(this).next().slideToggle(200);
+				});
+			})
+		</script>
+	</body>
+</html>
