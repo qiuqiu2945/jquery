@@ -1,0 +1,159 @@
+body,div,span,a{
+	margin: 0;
+	padding: 0;
+}
+body{
+	background-color: #333;
+}
+.wrapping{
+	width: 1000px;
+	height: 250px;
+	margin: 10px auto;
+}
+.wrapping .link{
+	float: left;
+	margin: 0 50px;
+	width: 200px;
+	height: 250px;
+	position: relative;
+}
+a{
+	text-decoration: none;
+	color: #eee;
+}
+.link-mission .icon{
+	background-image: url(img/mission.png);
+}
+.link-play .icon{
+	background-image: url(img/Heart.png);
+}
+.link-touch .icon{
+	background-image: url(img/touch.png);
+}
+.link .icon{
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 160px 160px;
+	width: 100%;
+	height: 180px;
+	/* 动画引入 */
+	transition: 0.2s linear;
+	-webkit-transition: 0.2s linear;
+	-moz-transition: 0.2s linear;
+	-o-transition: 0.2s linear;
+}
+/* 旋转放大动画 */
+.wrapping .link .icon:hover{
+	transform: rotate(360deg) scale(1.2);
+	-webkit-transform: rotate(360deg) scale(1.2);
+	-o-transform: rotate(360deg) scale(1.2);
+	-ms-transition: rotate(360deg) scale(1.2);
+}
+.wrapping .link .button{
+	display: block;
+	height: 50px;
+	line-height: 50px;
+	padding: 0 0 0 10px;
+	box-sizing: border-box;
+	border:2px solid rgba(255,255,255,0.8);
+	color: #2bcd3b;
+	margin: auto;
+	background-image: url(img/Right90_line.png);
+	background-repeat:no-repeat;
+	background-position: 150px center;
+	background-size: 30px 30px;
+	transition: 0.3s ease;
+	-webkit-transition: 0.3s ease;
+	-moz-transition: 0.3s ease;
+	-o-transition: 0.3s ease;
+	position: relative;
+}
+/* 箭头动画+边框颜色 */
+.wrapping .link .button:hover{
+	background-position:160px center;
+	border-color: rgba(255,255,255,1);
+}
+/* 线条动画 */
+.wrapping .link .button .line{
+	position: absolute;
+	display: block;
+	background: none;
+	transition: 0.3s ease;
+	-webkit-transition: 0.3s ease;
+	-moz-transition: 0.3s ease;
+	-o-transition: 0.3s ease;
+}
+.wrapping .link .button .line-top{
+	width: 0;
+	height: 2px;
+	left: -100%;
+	top: -2px;
+}
+.wrapping .link .button:hover .line-top{
+	width: 200px;
+	background-color: #fff;
+	top: -2px;
+	left: -2px;
+}
+.wrapping .link .button .line-bottom{
+	width: 0;
+	height: 2px;
+	right: -100%;
+	bottom: -2px;
+}
+.wrapping .link .button:hover .line-bottom{
+	width: 200px;
+	background-color: #fff;
+	bottom: -2px;
+	right: -2px;
+}
+.wrapping .link .button .line-left{
+	width: 2px;
+	height: 0px;
+	left: -2px;
+	bottom: -100%;
+}
+.wrapping .link .button:hover .line-left{
+	height: 50px;
+	left: -2px;
+	bottom: -2px;
+	background-color: #fff;
+}
+.wrapping .link .button .line-right{
+	width: 2px;
+	height: 0px;
+	right: -2px;
+	top: -100%;
+}
+.wrapping .link .button:hover .line-right{
+	height: 50px;
+	right: -2px;
+	top: -2px;
+	background-color: #fff;
+}
+/* 提示框 */
+.wrapping .tooltips{
+	position: absolute;
+	height: 30px;
+	line-height: 30px;
+	margin: 0 auto;
+	padding: 0 5px;
+	background-color: #2BCD3B;
+	border-radius: 3px;
+	opacity: 0;
+}
+.wrapping .triangle{
+	width: 0;
+	height: 0;
+	border: 8px solid transparent;
+	border-top-color: #2BCD3B;
+	position: absolute;
+	bottom: -50%;
+	left: 50%;
+	margin-left: -8px;
+}
+.tips-button1{
+	bottom: 80px;
+	left: 100px;
+}
