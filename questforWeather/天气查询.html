@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>获取天气</title>
+		<script src="./js/jquery-3.4.1.min.js"></script>
+		<script src="./js/citycode.js"></script>
+		<script type="text/javascript" src="./js/template-web.js"></script>
+		<script type="text/html" id="weatherTemplate">
+			<span>PM2.5 : {{pm25}}</span>
+			{{each weather_data as value i}}
+				<div>
+					<span>{{value.date}}</span>
+					<ul>
+						<li>{{value.weather}}</li>
+						<li>{{value.temperature}}</li>
+						<li>{{value.wind}}</li>
+						<li><img src={{value.dayPictureUrl}} alt=""><img src={{value.nightPictureUrl}} alt=""></li>
+					</ul>
+				</div>
+			{{/each}}
+		</script>
+		<style type="text/css">
+			#info{
+				width: 450px;
+				background-color: cornflowerblue;
+			}
+			#info div{
+				overflow: hidden;
+				border-bottom: 1px solid aliceblue;
+			}
+			select{
+				width: 100px;
+				height: 28px;
+			}
+			ul li{
+				list-style: none;
+				float: left;
+				width: 100px;
+			}
+		</style>
+		</head>
+		<body>
+		<div id="container">
+			<select id="province" onchange="selectCity()"></select>
+			<select id="city">
+			<!-- 这里做成一个下拉选择城市
+			<option value="101010100">北京</option>
+			<option value="101030100">天津</option>
+			<option value="101020100">上海</option>
+			<option value="101210101">杭州</option>
+			<option value="101280101">广州</option> -->
+			</select>
+			<input type="button" name="query" id="query" value="查询" /><br>
+			<div id="info">
+			</div>
+		</div>
+		<script type="text/javascript">
+			//生成下拉选择城市。
+			$(function(){
+				console.log("110000");
+				initPro("110000");
+			});
+			//省份下拉框初始化
+			function initPro(proCode){
+				var optionStr = "<option value=\"-1\">省份</option>";
+				for(var province in cities){
+					optionStr += "<option value=\""+province+"\"";
+					if(province == proCode){
+						optionStr += " select='selected'";
+					}
+					optionStr += ">"+cities[province]["省"]+"</option>";
+				}
+				$("#province").append(optionStr);
+				$("#city").empty();//清空城市
+				var optionStr = "<option value=\"-1\">市</option>";
+				$("#city").append(optionStr);
+			}
+			//选择城市
+			function selectCity(){
+				var optionStr = "";
+				var proCode = $("#province").val();
+				console.log(proCode);
+				for(var city in cities[proCode]["市"]){
+					optionStr += "<option value=\""+cities[proCode]["市"][city]["编码"]+"\"";
+					optionStr += ">"+cities[proCode]["市"][city]["市名"]+"</option>";
+				}
+				$("#city").append(optionStr);
+			}
+			//处理查询事件
+			$(function(){
+				$("#query").click(function(){
+					//var code = $("#city").val();
+					var city = $("#city option:selected").text();
+					$.ajax({
+						url:"http://api.map.baidu.com/telematics/v3/weather?location="+city+"&output=json&ak=EGgzZ22dsboWQEcPQ6KDQLknQd3YkkkP",
+						//"http://www.weather.com.cn/adat/sk/"+code+".html",
+						type:"get",
+						scriptCharset: "utf-8",
+						dataType:"jsonp",
+						success:function(data){
+							console.log(data.results[0]);
+							var html = template("weatherTemplate", data.results[0]);
+							$("#info").html(html);
+						}
+					});
+				});
+			});
+			
+		</script>
+		<!-- <!-- <iframe scrolling="no" src="https://tianqiapi.com/api.php?style=tw&skin=pitaya" 
+		frameborder="0" width="300" height="500" allowtransparency="true"></iframe> -->
+		</body>
+</html>
